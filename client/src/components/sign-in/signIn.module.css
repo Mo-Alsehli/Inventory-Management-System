@@ -1,0 +1,153 @@
+h1 {
+  color: #43464a;
+}
+
+.container {
+  background-color: #a4a1b8;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.wrapper {
+  width: 40%;
+  height: 80%;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 1.5px 1.5px 5px #b5b4bb;
+  margin: auto;
+  position: relative;
+}
+
+.signInWrapper {
+  padding: 10px 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.signInFormWrapper {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.formInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.signInFormWrapper h1 {
+  margin-bottom: 12px;
+  letter-spacing: 0.2px;
+}
+
+.signInFormWrapper span {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 5px;
+}
+
+label {
+  margin-top: 13px;
+  margin-bottom: 7px;
+  color: #43464a;
+  font-size: 14px;
+}
+
+input {
+  padding: 8px;
+  border: 2.5px solid #f1f2f7;
+  border-radius: 5px;
+  outline: none;
+}
+
+.inputField :focus {
+  outline: none;
+}
+
+.rememberCredientials {
+  margin-top: 15px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rememberCredientials input {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.rememberCredientials a {
+  font-weight: 600;
+  text-decoration: none;
+  color: #604e9e;
+}
+
+.submitBtn {
+  margin-top: 20px;
+  padding: 7px;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #604e9e;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+}
+
+.googleSignBtn {
+  margin-top: 15px;
+  border-radius: 5px;
+  font-weight: 700;
+  color: #000;
+  background-color: #fff;
+  border: 2.5px solid #f1f2f7;
+  cursor: pointer;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.googleIcon {
+  width: 25px;
+  height: 25px;
+  background-image: url("/home/mohamed/projects/sign-in-out/client/public/google-icon.png");
+  object-fit: cover;
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  margin-right: 15px;
+}
+
+.googleSignBtn span {
+  text-align: center;
+  margin-top: 7px;
+}
+
+.signUpLink {
+  color: #000;
+  font-size: 14px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.signUpLink button {
+  font-weight: 600;
+  text-decoration: none;
+  color: #604e9e;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
