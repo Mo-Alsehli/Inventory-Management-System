@@ -8,9 +8,8 @@ require("express-async-errors");
 
 const register = async (req, res) => {
   const user = await User.create({ ...req.body });
-  req.user = user;
   const token = jwt.sign(
-    { userId: user._id, name: user.name },
+    { userId: user._id, name: user.name, email: user.email },
     process.env.JWT_SECRET
   );
   res.status(StatusCodes.CREATED).json({ user: { name: user.name }, token });
@@ -23,11 +22,7 @@ const login = async (req, res) => {
   }
 
   const user = await User.findOne({ email });
-  req.user = user;
-  console.log("when login");
-  console.log(req.user);
 
-  console.log(user);
   if (!user) {
     throw new UnauthenticatedError("Please Provide Valid Credintials");
   }
@@ -37,7 +32,7 @@ const login = async (req, res) => {
     throw new UnauthenticatedError("Please Provide Valid Credintials");
   }
   const token = jwt.sign(
-    { userId: user._id, name: user.name },
+    { userId: user._id, name: user.name, email: user.email },
     process.env.JWT_SECRET
   );
   res.status(StatusCodes.OK).json({ user: { name: user.name }, token });
@@ -50,23 +45,61 @@ const update = async (req, res) => {
       params: { id: user_id },
     } = req;
 
-    console.log("when update");
-    console.log(req.user);
-
     if (!name || !email) {
-      throw new BadRequestError("Company And Position Must Be Provided");
+      throw new BadRequestError("Email And Name Must Be Provided");
     }
 
     const newUser = await User.findOneAndUpdate({ _id: user_id }, req.body, {
       new: true,
       runValidators: true,
     });
+    const token = jwt.sign(
+      { userId: newUser._id, name: newUser.name, email: newUser.email },
+      process.env.JWT_SECRET
+    );
+    res.status(StatusCodes.OK).json({ user: { name: newUser.name }, token });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-    if (!newUser) {
-      throw new NotFoundError(`There is no job with id: ${user_id}`);
+const updatePassword = async (req, res) => {
+  try {
+    const {
+      body: { oldPassword, password },
+      params: { id: user_id },
+    } = req;
+
+    if (!password || !oldPassword) {
+      throw new BadRequestError("Password Must Be Provided");
     }
 
-    res.status(StatusCodes.OK).send({ newUser });
+    const user = await User.findOne({ _id: user_id });
+    const isPassed = await bcrypt.compare(req.body.oldPassword, user.password);
+    if (isPassed) {
+      const salt = await bcrypt.genSalt(10);
+      const hash = await bcrypt.hash(req.body.password, salt);
+
+      const isSimiler = await bcrypt.compare(req.body.password, user.password);
+      if (isSimiler) {
+        throw new BadRequestError("New Password Can't Be Similter To Old One");
+      } else {
+        const newPassword = await User.findOneAndUpdate(
+          { _id: user_id },
+          { password: hash },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        if (!newPassword) {
+          throw new NotFoundError(`There is no User with id: ${user_id}`);
+        }
+        res.status(StatusCodes.OK).send({ newPassword });
+      }
+    } else {
+      throw new UnauthenticatedError("Please Provide Correct password");
+    }
   } catch (error) {
     console.log(error);
   }
@@ -76,4 +109,5 @@ module.exports = {
   register,
   login,
   update,
+  updatePassword,
 };

@@ -1,5 +1,7 @@
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
+const { UnauthenticatedError } = require("../errors/index");
+require("express-async-errors");
 
 const UserSchema = mongoose.Schema({
   name: {
