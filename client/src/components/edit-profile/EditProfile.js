@@ -27,45 +27,50 @@ const EditProfile = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.settings}>
-        <span>
-          <FaRegSun />
-        </span>
-        <h2>Settings</h2>
-      </div>
-      <div className={styles.underline}></div>
-      <form className={styles.formWrapper}>
-        <label>User Name</label>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className={styles.formInput}
-          placeholder="please enter your new name"
-          type="text"
-        />
-        <label>Email</label>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={styles.formInput}
-          placeholder="please enter your new email"
-          type="text"
-        />
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+        <div className={styles.settings}>
+          <span>
+            <FaRegSun />
+          </span>
+          <h2>Settings</h2>
+        </div>
+        <div className={styles.underline}></div>
+        <form className={styles.formWrapper}>
+          <label>User Name</label>
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={styles.formInput}
+            placeholder="please enter your new name"
+            type="text"
+          />
+          <label>Email</label>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.formInput}
+            placeholder="please enter your new email"
+            type="text"
+          />
+          <button
+            type="submit"
+            className={styles.submitBtn}
+            onClick={(e) => submitForm(e)}
+          >
+            Submit
+          </button>
+        </form>
         <button
-          type="submit"
-          className={styles.submitBtn}
-          onClick={(e) => submitForm(e)}
+          className={styles.backBtn}
+          onClick={() => navigate("/dashboard")}
         >
-          Submit
+          <span>
+            <FaLongArrowAltLeft />
+          </span>{" "}
+          Back
         </button>
-      </form>
-      <button className={styles.backBtn} onClick={() => navigate("/dashboard")}>
-        <span>
-          <FaLongArrowAltLeft />
-        </span>{" "}
-        Back
-      </button>
+      </div>
     </div>
   );
 };

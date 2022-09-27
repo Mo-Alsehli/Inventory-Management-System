@@ -6,8 +6,7 @@ const ProductSchema = mongoose.Schema({
   name: {
     type: String,
     required: [true, "Please Provide A Name"],
-    minlength: 6,
-    maxlength: 50,
+    maxlength: 20,
   },
   category: {
     type: String,
@@ -20,6 +19,11 @@ const ProductSchema = mongoose.Schema({
   count: {
     type: Number,
     default: 1,
+  },
+  createdBy: {
+    type: mongoose.Types.ObjectId,
+    required: true,
+    ref: "User",
   },
 });
 

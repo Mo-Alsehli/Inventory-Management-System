@@ -10,7 +10,7 @@ import ChangePass from "./components/change-password/ChangePass";
 
 const App = () => {
   return (
-    <>
+    <div className="container">
       <Router>
         <Routes>
           <Route element={<PrivateComponent />}>
@@ -26,7 +26,7 @@ const App = () => {
           <Route exact path="/sign-up" element={<SignUp />} />
         </Routes>
       </Router>
-    </>
+    </div>
   );
 };
 

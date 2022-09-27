@@ -1,25 +1,16 @@
 import React, { useState, useEffect } from "react";
-import UserApi from "../../apis/UserApi";
 import { useNavigate } from "react-router-dom";
 import styles from "./dashboard.module.css";
-import { FaAngleDoubleDown } from "react-icons/fa";
+import { FaCaretDown } from "react-icons/fa";
+import Products from "../product/Products";
+import jwtDecode from "jwt-decode";
 
 const Dashboard = () => {
-  const [users, setUsers] = useState([]);
   const token = localStorage.getItem("token");
+  const user = jwtDecode(token);
   const navigate = useNavigate();
 
   useEffect(() => {
-    /* async function fetchData() {
-      const response = await UserApi.get("/users", {
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setUsers(response.data.users);
-      console.log(response);
-    } */
     if (token) {
       navigate("/dashboard");
     } else {
@@ -37,11 +28,11 @@ const Dashboard = () => {
   return (
     <div className={styles.dashboard}>
       <div className={styles.navBar}>
-        <h1>IMS</h1>
+        <h1>I M S</h1>
         <div className={styles.user}>
-          <p>Mohamed Magdi</p>
+          <p>{user.name}</p>
           <span>
-            <FaAngleDoubleDown />
+            <FaCaretDown />
           </span>
           <div className={styles.options}>
             <p onClick={() => navigate("/dashbard/editProfile")}>
@@ -51,9 +42,14 @@ const Dashboard = () => {
             <p onClick={() => navigate("/dashbard/changePass")}>
               Change Password
             </p>
+            <div className={styles.underline}></div>
+            <p onClick={(e) => logOut(e)} className={styles.logOutBtn}>
+              LogOut
+            </p>
           </div>
         </div>
       </div>
+      <Products />
     </div>
   );
 };
