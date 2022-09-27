@@ -6,13 +6,13 @@ const authRouter = require("./routes/auth");
 const productsRouter = require("./routes/products");
 const cors = require("cors");
 
+const app = express();
 // host
 app.use(express.static("client/build"));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-const app = express();
 app.use(express.json());
 app.use(cors());
 // extra packages
