@@ -14,7 +14,7 @@ const Dashboard = () => {
     if (token) {
       navigate("/dashboard");
     } else {
-      navigate("/");
+      navigate("/sign-in");
     }
     // fetchData();
   }, [navigate, token]);
@@ -22,7 +22,7 @@ const Dashboard = () => {
   const logOut = (e) => {
     e.preventDefault();
     localStorage.clear();
-    navigate("/");
+    navigate("/sign-in");
   };
 
   return (

@@ -20,7 +20,7 @@ const SignUp = () => {
 
   const handleSignInPage = (e) => {
     e.stopPropagation();
-    navigate("/");
+    navigate("/sign-in");
   };
 
   const signUp = async (e) => {

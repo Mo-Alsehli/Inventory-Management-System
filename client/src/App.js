@@ -22,7 +22,7 @@ const App = () => {
             />
             <Route exact path="/dashbard/changePass" element={<ChangePass />} />
           </Route>
-          <Route exact path="/" element={<SignIn />} />
+          <Route exact path="/sign-in" element={<SignIn />} />
           <Route exact path="/sign-up" element={<SignUp />} />
         </Routes>
       </Router>
