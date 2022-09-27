@@ -6,10 +6,6 @@ const authRouter = require("./routes/auth");
 const productsRouter = require("./routes/products");
 const cors = require("cors");
 
-// error handler
-const notFoundMiddleware = require("./middleware/not-found");
-const errorHandlerMiddleware = require("./middleware/error-handler");
-
 const app = express();
 app.use(express.json());
 app.use(cors());
