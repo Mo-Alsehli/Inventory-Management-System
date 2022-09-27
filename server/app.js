@@ -20,6 +20,13 @@ app.get("/", (req, res) => {
   res.send("<h1>Inventory Mangement System</h1>");
 });
 
+// host
+app.use(express.static("../client/build"));
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../client/build"));
+}
+
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/products", productsRouter);
 
