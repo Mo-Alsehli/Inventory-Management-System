@@ -15,16 +15,11 @@ app.use(express.json());
 app.use(cors());
 // extra packages
 
-// routes
-app.get("/", (req, res) => {
-  res.send("<h1>Inventory Mangement System</h1>");
-});
-
 // host
-app.use(express.static("../client/build"));
+app.use(express.static("client/build"));
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("../client/build"));
+  app.use(express.static("client/build"));
 }
 
 app.use("/api/v1/auth", authRouter);
