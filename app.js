@@ -17,10 +17,6 @@ app.use(express.json());
 app.use(cors());
 // extra packages
 
-app.get("/", (req, res) => {
-  res.send("<h1>Inventory Management System</h1>");
-});
-
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/products", productsRouter);
 
